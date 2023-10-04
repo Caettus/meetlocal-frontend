@@ -29,9 +29,10 @@ jobs:
         
       - name: Push Docker image to Docker Hub
         run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker tag meetlocal-frontend:latest caettus/meetlocal-frontend:latest
+          docker login -u caettus -p ${{ secrets.DOCKERHUB_TOKEN }}
+          tag meetlocal-frontend:latest caettus/meetlocal-frontend:latest
           docker push caettus/meetlocal-frontend:latest
+
 
       - name: Deploy Docker container
         run: |
