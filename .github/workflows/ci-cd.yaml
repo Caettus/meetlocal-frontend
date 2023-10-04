@@ -28,10 +28,16 @@ jobs:
         run: docker build -t meetlocal-frontend:latest .
         
       - name: Push Docker image to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: yourdockerusername
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  
+      - name: Tag and push Docker image
         run: |
-          docker login -u caettus -p ${{ secrets.DOCKERHUB_TOKEN }}
-          tag meetlocal-frontend:latest caettus/meetlocal-frontend:latest
-          docker push caettus/meetlocal-frontend:latest
+          docker tag meetlocal-frontend:latest yourdockerusername/meetlocal-frontend:latest
+          docker push yourdockerusername/meetlocal-frontend:latest
+
 
 
       - name: Deploy Docker container
