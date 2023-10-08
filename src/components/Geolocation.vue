@@ -1,13 +1,18 @@
+
+
+
 <template>
   <div>
     <button @click="getLocation">Give us your location</button>
-    <h1>My Geolocation</h1>
-    <p>Latitude: {{ latitude }}</p>
-    <p>Longitude: {{ longitude }}</p>
+    <h1>England is my city</h1>
+    <input v-model="city" type="text" placeholder="City..." />
+    <input v-model="country" type="text" placeholder="Country..." />
   </div>
 </template>
 
 <script>
+const nominatimApiKey = 'https://nominatim.openstreetmap.org/search';
+
 export default {
   name: 'UserLocation',
   data() {
@@ -18,16 +23,16 @@ export default {
   },
   methods: {
     getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(this.showPosition);
-      } else {
-        // Handle the case when geolocation is not supported by the browser.
-        alert("Geolocation is not supported by this browser.");
-      }
-    },
-    showPosition(position) {
-      this.latitude = position.coords.latitude;
-      this.longitude = position.coords.longitude;
+      const completeAddress = `${this.city}, ${this.country}`;
+
+      axios
+      .get(nominatimApiKey, {
+        params: {
+          q: completeAddress,
+          format: 'json'
+        }
+      })
+      .then((response))
     }
   }
 };
