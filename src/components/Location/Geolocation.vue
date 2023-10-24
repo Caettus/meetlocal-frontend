@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="GetLocationPage">
     <button @click="getLocation">Give us your location</button>
     <h1>England is my city</h1>
     <input v-model="city" type="text" placeholder="City..." />
@@ -11,7 +11,7 @@
 const nominatimApiKey = 'https://nominatim.openstreetmap.org/search';
 
 export default {
-  name: 'UserLocation',
+  name: 'GeoLocation',
   data() {
     return {
       latitude: null,
@@ -50,7 +50,7 @@ export default {
         });
     },
     postLocation() {
-      fetch('http://localhost:5244/api/location', {
+      fetch('https://localhost:7031/api/location', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,6 +63,8 @@ export default {
         .then((response) => {
           if (response.ok) {
             console.log('Location saved');
+            // Navigate to the 'test' route when the response is successful
+            this.$router.push({ name: 'test' });
           } else {
             console.error('Location not saved');
           }
@@ -70,7 +72,7 @@ export default {
         .catch((error) => {
           console.error('An error occurred:', error);
         });
-    }
+    },
   },
 };
 </script>
