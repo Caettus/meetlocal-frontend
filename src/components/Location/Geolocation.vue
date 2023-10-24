@@ -1,9 +1,22 @@
 <template>
   <div class="GetLocationPage">
-    <button @click="getLocation">Give us your location</button>
-    <h1>England is my city</h1>
-    <input v-model="city" type="text" placeholder="City..." />
-    <input v-model="country" type="text" placeholder="Country..." />
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col">
+          <input v-model="city" type="text" placeholder="City..." />
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col">
+          <input v-model="country" type="text" placeholder="Country..." />
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col">
+          <button @click="getLocation">See events in your area!</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -64,7 +77,7 @@ export default {
           if (response.ok) {
             console.log('Location saved');
             // Navigate to the 'test' route when the response is successful
-            this.$router.push({ name: 'test' });
+            this.$router.push({ name: 'feed' });
           } else {
             console.error('Location not saved');
           }

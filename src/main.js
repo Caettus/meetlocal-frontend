@@ -4,13 +4,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { createApp } from 'vue'
 import App from './App.vue'
 import GeoLocation from './components/Location/Geolocation.vue'
-import Test from './components/test.vue'
+import EventFeed from './components/EventFeed/Feed.vue'
 
 
 // 2. Define some routes
 const routes = [
   { path: '/', component: GeoLocation, name: 'home' },
-  { path: '/test', component: Test, name: 'test' },
+  { path: '/feed', component: EventFeed, name: 'feed' },
 ]
 
 // 3. Create the router instance and pass the `routes` option
