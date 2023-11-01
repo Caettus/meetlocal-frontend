@@ -1,15 +1,20 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Event Feed</h1>
-            </div>
-        </div>
+        <EventCard v-for="event in events" :key="event.id" :event="event" />
     </div>
 </template>
 
 <script>
+import EventCard from "@/components/EventFeed/EventCard.vue";
 export default {
-    name: 'EventFeed'
-}
+  name: 'EventFeed',
+  components: {
+          EventCard
+  },
+  data() {
+    return {
+      events: null
+    };
+  },
+};
 </script>
