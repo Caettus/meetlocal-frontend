@@ -1,64 +1,73 @@
 <template>
   <div class="event-card">
-    <h4>{{ event.gatheringName }}</h4>
-    <p>{{ event.gatheringDescription }}</p>
-
+    <div class="event-image">
+      <img
+          src="https://media.istockphoto.com/id/1412406500/nl/foto/friends-enjoying-every-song-the-band-plays.jpg?s=2048x2048&w=is&k=20&c=RIfPjPbasVkw_-m3LjPiwt_js1VRjX8M0oCew-PVxis="
+          alt="Event Image"
+      />
+    </div>
+    <div class="event-details">
+      <h4 class="gatheringName">{{ event.gatheringName }}</h4>
+      <p><strong>Description:</strong> {{ event.gatheringDescription }}</p>
+      <p><strong>Location:</strong> {{ event.gatheringLocation }}</p>
+      <p><strong>Date:</strong> {{ event.gatheringDate }}</p>
+      <p><strong>Organiser:</strong> {{ event.gatheringOrganiser }}</p>
+      <p><strong>Category:</strong> {{ event.gatheringCategory }}</p>
+    </div>
   </div>
 </template>
 
-
-
 <script>
 export default {
-      props: {
-        event: {
-          type: Object,
-          required: true,
-        },
-      },
-}
-
-
+  props: {
+    event: {
+      type: Object,
+      required: true,
+    },
+  },
+};
 </script>
 
 <style>
 .event-card {
   width: 320px;
   height: auto;
-  min-height: 200px; /* Verminderde minimale hoogte */
-  background: #f5f5f5; /* Zachte grijze achtergrond */
+  min-height: 300px;
+  background: #fff;
   border-radius: 20px;
-  padding: 20px; /* Verhoogde padding voor inhoud */
+  padding: 20px;
   margin-bottom: 24px;
   margin-right: 10px;
-  transition: transform 0.3s ease; /* Soepelere schaalanimatie */
+  transition: transform 0.3s ease;
   cursor: pointer;
-  color: #333; /* Donkere tekstkleur */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtiele schaduw */
+  color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.event-card:hover {
-  transform: scale(1.05); /* Vergroten bij hover */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Verhoogde schaduw bij hover */
+.event-image img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+  transition: transform 0.3s ease-in-out; /* Add a smooth hover effect */
 }
 
-.event-card > .gatheringName {
-  margin: 0;
-  font-size: 18px; /* Groot lettertype voor de titel */
+.event-image img:hover {
+  transform: scale(1.1); /* Enlarge the image on hover */
+}
+
+.event-details {
+  padding: 20px;
+}
+
+.gatheringName {
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 10px; /* Ruimte onder de titel */
+  margin-bottom: 10px;
 }
 
-.event-card > .gatheringDescription {
-  font-size: 14px; /* Kleinere lettergrootte voor beschrijving */
-  line-height: 1.4;
-}
-
-.event-card > .date {
-  font-size: 16px; /* Lettergrootte voor datum of tijd */
-  font-weight: bold;
-  margin-top: 10px; /* Ruimte boven de datum */
-  color: #007BFF; /* Accentkleur voor de datum */
-}
+/* Style other elements as needed */
 </style>
-
