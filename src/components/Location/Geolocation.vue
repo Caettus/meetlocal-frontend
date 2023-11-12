@@ -12,8 +12,8 @@
         </div>
       </div>
       <div class="row justify-content-center">
-        <div class="col">
-          <button @click="getLocation">See events in your area!</button>
+        <div class="d-grid gap-2 mt-3">
+          <button class="btn btn-primary" type="button" @click="getLocation">Ga verder</button>
         </div>
       </div>
     </div>

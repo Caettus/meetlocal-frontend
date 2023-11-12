@@ -5,6 +5,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto">
           <!-- ... (existing navigation items) ... -->
+          <li class="nav-item" v-if="$route.path === '/feed'">
+            <router-link class="nav-link" to="/">Home</router-link>
+          </li>
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

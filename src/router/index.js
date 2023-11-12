@@ -1,11 +1,11 @@
-import GeoLocation from '../components/Location/Geolocation.vue'
 import EventFeed from '../components/EventFeed/Feed.vue'
+import HomePage from '../components/HomePage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 
 // 2. Define some routes
 const routes = [
-    { path: '/', component: GeoLocation, name: 'home' },
+    { path: '/', component: HomePage, name: 'home' },
     { path: '/feed', component: EventFeed, name: 'feed' },
 ]
 
