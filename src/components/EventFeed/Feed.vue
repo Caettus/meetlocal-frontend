@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-    <input type="text" v-model="search" placeholder="Search gatherings...">
-    <button class="btn btn-primary" @click="searchGatherings">Search</button>
-    <EventCard v-for="event in filteredEvents" :key="event.id" :event="event" />
+    <input v-model="search" type="text" placeholder="Search..." />
+    <div class="row">
+      <EventCard v-for="event in filteredEvents" :key="event.id" :event="event" class="col" />
+    </div>
   </div>
 </template>
 
@@ -17,12 +18,16 @@ export default {
   data() {
     return {
       events: [],
-      search: ''
+      search: '',
     };
   },
   computed: {
     filteredEvents() {
-      return this.events.filter(event => event.GatheringName && event.GatheringName.includes(this.search));
+      if (this.search) {
+        return this.events.filter(event => event.gatheringName.includes(this.search));
+      } else {
+        return this.events;
+      }
     }
   },
   methods: {
@@ -37,15 +42,6 @@ export default {
             console.log(error);
           });
     },
-    searchGatherings() {
-      EventService.searchGatherings(this.search)
-          .then(response => {
-            this.events = response;
-          })
-          .catch(error => {
-            console.log(error);
-          });
-    }
   },
   created() {
     this.getGatherings();
