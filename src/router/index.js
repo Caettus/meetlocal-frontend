@@ -9,7 +9,6 @@ const routes = [
     { path: '/feed', component: EventFeed, name: 'feed' },
 ]
 
-// 3. Create the router instance and pass the `routes` option
 const router = createRouter({
     history: createWebHistory(), // Use createWebHashHistory
     routes,
