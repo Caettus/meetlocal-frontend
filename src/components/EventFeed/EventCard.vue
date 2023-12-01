@@ -52,11 +52,11 @@ export default {
   max-height: 200px;
   object-fit: cover;
   border-radius: 20px 20px 0 0;
-  transition: transform 0.3s ease-in-out; /* Add a smooth hover effect */
+  transition: transform 0.3s ease-in-out;
 }
 
 .event-image img:hover {
-  transform: scale(1.1); /* Enlarge the image on hover */
+  transform: scale(1.1);
 }
 
 .event-details {
@@ -69,5 +69,4 @@ export default {
   margin-bottom: 10px;
 }
 
-/* Style other elements as needed */
 </style>
