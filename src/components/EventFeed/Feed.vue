@@ -1,32 +1,50 @@
 <template>
-    <div class="container">
-        <EventCard v-for="event in events" :key="event.id" :event="event" />
+  <div class="container">
+    <input v-model="search" type="text" placeholder="Search..." />
+    <div class="row">
+      <EventCard v-for="event in filteredEvents" :key="event.id" :event="event" class="col" />
     </div>
+  </div>
 </template>
 
 <script>
-import EventCard from "@/components/EventFeed/EventCard.vue";
-import EventService from "@/services/EventService.js";
+import EventCard from '@/components/EventFeed/EventCard.vue';
+import EventService from '@/services/EventService.js';
 export default {
   name: 'EventFeed',
   components: {
-          EventCard
+    EventCard
   },
   data() {
     return {
-      events: null
+      events: [],
+      search: '',
     };
   },
+  computed: {
+    filteredEvents() {
+      if (this.search) {
+        return this.events.filter(event => event.gatheringName.includes(this.search));
+      } else {
+        return this.events;
+      }
+    }
+  },
+  methods: {
+    getGatherings() {
+      EventService.getGatherings()
+          .then(response => {
+            console.log(response)
+            this.events = response;
+            console.log(response.events)
+          })
+          .catch(error => {
+            console.log(error);
+          });
+    },
+  },
   created() {
-    EventService.getGatherings()
-      .then(response => {
-        console.log(response)
-        this.events = response;
-        console.log(response.events)
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.getGatherings();
   }
 };
 </script>
