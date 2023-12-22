@@ -5,7 +5,7 @@
       <button class="btn btn-outline-success btn-light" type="submit">Search</button>
     </form>
     <div class="row">
-      <EventCard v-for="event in filteredEvents" :key="event.id" :event="event" class="col" />
+      <EventCard v-for="event in filteredEvents" :key="event.id" :event="event" class="" />
     </div>
   </div>
 </template>
