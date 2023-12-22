@@ -1,18 +1,11 @@
 <template>
   <div class="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
-      <!-- ... (existing navigation code) ... -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-          <!-- ... (existing navigation items) ... -->
-          <li class="nav-item" v-if="$route.path === '/feed'">
-            <router-link class="nav-link" to="/">Home</router-link>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success btn-light" type="submit">Search</button>
-        </form>
+
+    <li class="nav-item" v-if="$route.path === '/feed'">
+      <router-link class="nav-link" to="/">Home</router-link>
+    </li>
+
+
         <!-- Conditional rendering of "New Event" button -->
         <button class="btn btn-primary" @click="createNewEvent" data-bs-toggle="modal" data-bs-target="#exampleModal" v-if="$route.path === '/feed'">New Event</button>
       </div>
@@ -89,9 +82,10 @@
           </div>
         </div>
       </div>
-    </nav>
+      <!-- New Event Popup END-->
+
     <router-view></router-view>
-  </div>
+
 </template>
 
 <script>
