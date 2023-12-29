@@ -31,20 +31,6 @@ export default {
         return response.json();
     },
 
-    async updateGathering(gathering) {
-        const response = await fetch(`${apiUrl}/${gathering.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(gathering),
-        });
-        if (!response.ok) {
-            throw new Error("Failed to update event");
-        }
-        return response.json();
-    },
-
     async deleteGathering(id) {
         const response = await fetch(`${apiUrl}/${id}`, {
             method: 'DELETE',
