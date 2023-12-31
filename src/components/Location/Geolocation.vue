@@ -3,17 +3,17 @@
     <div class="container text-center">
       <div class="row justify-content-center">
         <div class="col">
-          <input v-model="city" type="text" placeholder="City..." />
+          <input v-model="city" type="text" placeholder="City..." id="cityInput"/>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col">
-          <input v-model="country" type="text" placeholder="Country..." />
+          <input v-model="country" type="text" placeholder="Country..." id="countryInput"/>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="d-grid gap-2 mt-3">
-          <button class="btn btn-primary" type="button" @click="getLocation">Ga verder</button>
+          <button class="btn btn-primary" type="button" @click="getLocation" id="locationSubmitButton">Ga verder</button>
         </div>
       </div>
     </div>
