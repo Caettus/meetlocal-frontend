@@ -2,7 +2,7 @@
   <div class="container">
     <form class="d-flex">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="search" id="feedSearchInput">
-      <button class="btn btn-outline-success btn-light" type="submit" id="feedSearchButton">Search</button>
+      <!-- <button class="btn btn-outline-success btn-light" type="submit" id="feedSearchButton">Search</button> -->
     </form>
     <div class="row">
       <EventCard v-for="event in filteredEvents" :key="event.id" :event="event" class="" />
