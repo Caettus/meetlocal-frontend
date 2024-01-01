@@ -4,7 +4,11 @@
       <button class="meetLocalButton">
         <router-link class="nav-link" to="/">MeetLocal</router-link>
       </button>
-
+      <div class="account">
+        <img src="@/assets/profile.jpg" alt="Profile Picture" class="profile-pic" />
+        <span class="account-text">Organiser Account</span>
+        <img src="@/assets/notification-bell.png" alt="Notification Bell" class="bell-icon" />
+      </div>
       <!-- Conditional rendering of "New Event" button -->
       <button class="btn btn-primary" @click="createNewEvent" data-bs-toggle="modal" data-bs-target="#exampleModal" v-if="$route.path === '/feed'">New Event</button>
     </nav>
@@ -84,6 +88,7 @@
     <router-view></router-view>
   </div>
 </template>
+
 
 
 <script>
@@ -185,7 +190,34 @@ export default {
 
 .navbar {
   background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+/* Add the following styles to your CSS */
+.account {
+  display: flex;
+  align-items: center;
+}
 
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.account-text {
+  font-family: Poppins;
+  font-weight: 800;
+  color: #E3C93C;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.bell-icon {
+  width: 24px;
+  height: 24px;
+}
 </style>
