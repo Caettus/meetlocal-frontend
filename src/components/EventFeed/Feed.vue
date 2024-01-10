@@ -41,6 +41,8 @@ export default {
             this.events = response;
             console.log(response.events)
           })
+          
+          
           .catch(error => {
             console.log(error);
           });
