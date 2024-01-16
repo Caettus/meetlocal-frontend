@@ -4,7 +4,7 @@ import DetailsPage from '../components/DetailsPage/Details.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 
-// 2. Define some routes
+
 const routes = [
     { path: '/', component: HomePage, name: 'home' },
     { path: '/feed', component: EventFeed, name: 'feed' },
@@ -12,7 +12,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(), // Use createWebHashHistory
+    history: createWebHistory(), 
     routes,
 })
 

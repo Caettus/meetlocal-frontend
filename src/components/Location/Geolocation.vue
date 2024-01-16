@@ -76,7 +76,7 @@ export default {
         .then((response) => {
           if (response.ok) {
             console.log('Location saved');
-            // Navigate to the 'test' route when the response is successful
+            
             this.$router.push({ name: 'feed' });
           } else {
             console.error('Location not saved');
