@@ -24,6 +24,12 @@ jobs:
       - name: Build Vue.js project
         run: npm run build  
 
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm run serve
+
       - name: Build Docker image
         run: docker build -t meetlocal-frontend:latest .
         
@@ -37,8 +43,6 @@ jobs:
         run: |
           docker tag meetlocal-frontend:latest caettus/meetlocal-frontend:latest
           docker push caettus/meetlocal-frontend:latest
-
-
 
       - name: Deploy Docker container
         run: |
