@@ -1,3 +1,5 @@
+import { cy, describe } from 'cypress';
+import { it } from 'cypress';
 describe('Create Event', () => {
     it('should create a new event and search for it', () => {
         // Visit the website

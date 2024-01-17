@@ -1,0 +1,8 @@
+{
+  "event.gatheringName": "Test evenement",
+  "event.gatheringDescription": "Test evenement beschrijving",
+  "event.gatheringOrganiser": "Test organisator",
+  "event.gatheringLocation": "Test locatie",
+  "event.gatheringDate": "2017-01-01",
+  "event.gatheringCategory": "Test categorie"
+}
