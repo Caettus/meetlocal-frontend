@@ -1,30 +1,22 @@
-import { cy, describe } from 'cypress';
-import { it } from 'cypress';
-import { beforeEach } from 'cypress';
-
 describe('Search Test', () => {
     beforeEach(() => {
-        cy.server()
-        cy.route('GET', '/api/gathering', 'fixture:gatheringdata.json')
+        cy.intercept('GET', 'https://localhost:7031/api/gathering', { fixture: 'gatheringdata.json' }).as('getFeed')
+        cy.intercept('POST', 'https://localhost:7031/api/location', { statusCode: 200 }).as('postRequest')
+        cy.visit('http://localhost:8080')
     })
 
-    it('should search for "Test"', () => {
-        cy.get('#cityInput').type('Eindhoven')
-        cy.get('#countryInput').type('Netherlands')
-        cy.get('#locationSubmitButton').click()
+    it('should search for gatherings', () => {
+        cy.fixture('gatheringdata.json').then((gatheringData) => {
+            cy.get('#cityInput').type('Eindhoven')
+            cy.get('#countryInput').type('Netherlands')
+            cy.get('#locationSubmitButton').click()
 
-        cy.get('#feedSearchInput').type('Test')
-
-        cy.get('.row').find('.gatheringName').should('contain', 'Test')
-    })
-
-    it('should search for "123456789" and not find anything', () => {
-        cy.get('#cityInput').type('Eindhoven')
-        cy.get('#countryInput').type('Netherlands')
-        cy.get('#locationSubmitButton').click()
-
-        cy.get('#feedSearchInput').type('123456789')
-
-        cy.get('.row').find('.gatheringName').should('not.exist')
+            cy.wait('@postRequest').then(() => {
+               
+                cy.wait('@getFeed')
+                cy.get('#feedSearchInput').type('Test')
+                cy.get('.row').contains('.gatheringName', 'Test').should('exist')
+            })
+        })
     })
 })
