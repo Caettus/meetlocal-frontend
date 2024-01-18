@@ -7,7 +7,6 @@
       <div class="account">
         <img src="@/assets/profile.jpg" alt="Profile Picture" class="profile-pic" />
         <span class="account-text">Organiser Account</span>
-        <img src="@/assets/notification-bell.png" alt="Notification Bell" class="bell-icon" />
       </div>
       <!-- Conditional rendering of "New Event" button -->
       <button class="btn btn-primary" @click="createNewEvent" data-bs-toggle="modal" data-bs-target="#exampleModal" v-if="$route.path === '/feed'">New Event</button>
@@ -61,9 +60,9 @@
             <div class="form-floating">
               <select class="form-select" id="categoryInput" v-model="eventCategory">
                 <option value="" disabled selected>Select a category</option>
-                <option value="category1">Festival</option>
-                <option value="category2">Convention</option>
-                <option value="category3">Open Club Meeting</option>
+                <option value="festival">Festival</option>
+                <option value="convention">Convention</option>
+                <option value="open-club-meeting">Open Club Meeting</option>
               </select>
               <label for="categoryInput">Category</label>
             </div>
@@ -111,8 +110,6 @@ export default {
   methods: {
 
     createNewEvent() {
-      // this.checkLocation();
-
       const eventData ={
         GatheringName: this.eventName,
         GatheringDescription: this.eventDescription,
@@ -133,14 +130,16 @@ export default {
       })
         .then((response) => {
           if (response.ok) {
-            console.log('Event created successfully!');
+            alert('Event created successfully, click OK to continue.');
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
             this.$router.push('/feed');
-          } else {
-            console.error('An error occurred. Event not created.');
           }
         })
         .catch((error) => {
           console.error('An error occurred:', error);
+          alert('An error occurred. Event not created.');
         });
     },
     checkLocation() {
@@ -151,7 +150,8 @@ export default {
             if (response.ok) {
               return response.json();
             } else {
-              console.error('Geocoding failed. Address not found.');
+              alert('Not a valid address provided.');
+
             }
           })
           .then((data) => {
@@ -164,11 +164,12 @@ export default {
 
               this.postLocation();
             } else {
-              console.error('Geocoding failed. Address not found.');
+              alert('Not a valid address provided.');
             }
           })
           .catch((error) => {
             console.error('An error occurred:', error);
+            alert('Not a valid address provided, please try again.');
           });
     },
   },
@@ -195,7 +196,6 @@ export default {
   align-items: center;
 }
 
-/* Add the following styles to your CSS */
 .account {
   display: flex;
   align-items: center;

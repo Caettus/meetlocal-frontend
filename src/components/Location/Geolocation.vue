@@ -50,6 +50,7 @@ export default {
             return response.json();
           } else {
             console.error('Geocoding failed. Address not found.');
+            alert('Geocoding failed. Address not found.');
           }
         })
         .then((data) => {
@@ -63,10 +64,12 @@ export default {
             this.postLocation();
           } else {
             console.error('Geocoding failed. Address not found.');
+            alert('Address could not be found');
           }
         })
         .catch((error) => {
           console.error('An error occurred:', error);
+          alert('Address could not be found');
         });
     },
     postLocation() {
@@ -87,10 +90,12 @@ export default {
             this.$router.push({ name: 'feed' });
           } else {
             console.error('Location not saved');
+            alert('Address could not be found');
           }
         })
         .catch((error) => {
           console.error('An error occurred:', error);
+          alert('Address could not be found');
         });
     },
   },
