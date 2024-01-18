@@ -35,7 +35,14 @@ export default {
   },
   methods: {
     getLocation() {
-      const completeAddress = `${this.city}, ${this.country}`;
+      // Invoervalidatie toegevoegd
+      if (!/^[a-zA-Z]+$/.test(this.city) || !/^[a-zA-Z]+$/.test(this.country)) {
+        alert('Ongeldige invoer. Gebruik alleen letters voor City en Country.');
+        return;
+      }
+
+      //encodeURIcomponent toegevoegd
+      const completeAddress = `${encodeURIComponent(this.city)}, ${encodeURIComponent(this.country)}`;
 
       fetch(`${nominatimApiKey}?q=${completeAddress}&format=json`)
         .then((response) => {
